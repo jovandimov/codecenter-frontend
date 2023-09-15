@@ -1,0 +1,16 @@
+<div class="card mb-3" >
+  <div class="row g-0">
+    <div class="col-md-2 card-body">
+      <button type="button" (click)="postLike()" [disabled]="liked == true" class="arrow"><i class="gg-arrow-up-o"></i></button>
+      <p id="numVotes">{{likes}}</p>
+      <button type="button" (click)="postUnlike()" [disabled]="liked == false" class="arrow"><i class="gg-arrow-down-o"></i></button>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{question?.title}}</h5>
+<!--        <p class="card-text">{{question?.questionText}}</p>-->
+        <pre><code>{{question?.questionText}}</code></pre>
+      </div>
+    </div>
+  </div>
+</div>

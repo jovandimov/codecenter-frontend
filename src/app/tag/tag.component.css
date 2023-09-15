@@ -1,0 +1,9 @@
+h5
+{
+  color: #FA2742;
+}
+.card:hover
+{
+  box-shadow: 2px 1px 4px 0.5px #d5d5d5;
+  -webkit-box-shadow: 2px 1px 4px 0.5px #d5d5d5;
+}

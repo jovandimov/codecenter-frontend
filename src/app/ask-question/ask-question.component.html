@@ -1,0 +1,69 @@
+<div class="proba">
+  <app-heading [title]="title"></app-heading>
+  <hr>
+  <div class="cont">
+    <div class="left">
+      <form [formGroup]="form" (ngSubmit)="submitForm()">
+        <div class="mb-3 form-group">
+          <label for="exampleFormControlInput1" class="form-label">Title</label>
+          <p>Be specific and imagine you’re asking a question to another person</p>
+          <input type="text" formControlName="title" class="form-control" id="exampleFormControlInput1"
+                 placeholder="Enter title here...">
+        </div>
+        <div class="mb-3 form-group">
+          <label for="exampleFormControlTextarea1" class="form-label">Body</label>
+          <p>Include all the information someone would need to answer your question</p>
+          <textarea formControlName="questionText" class="form-control" id="exampleFormControlTextarea1" rows="3"
+                    placeholder="Enter problem description here..."></textarea>
+        </div>
+        <div class="mb-3 form-group">
+          <label for="search-box" class="form-label">Tags</label>
+          <p>Add up to 5 tags to describe what your question is about</p>
+          <p [ngClass]="fiveTags === false ? 'hide' : 'show'" >Five tags have already been added</p>
+          <div class="tagContainer">
+          <p class="tag" *ngFor="let t of tags">{{t?.name}} <a (click)="deleteTag(t)">x</a></p>
+          </div>
+          <input type="text" class="form-control" #searchBox id="search-box" (input)="search(searchBox.value)">
+          <ul class="search-result">
+            <li *ngFor="let tag of tags$ | async" >
+              <a (click)="addToTagList(tag)">
+                <app-tag-for-search [t] = tag></app-tag-for-search>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <p [ngClass]="badAnswer === false ? 'hide' : 'show'" >Your answer couldn't be submitted. Please enter a title, and an answer</p>
+        <button type="submit" value="Submit" class="btn btn-outline-success">Submit</button>
+      </form>
+    </div>
+    <div class="right">
+      <h3>Steps</h3>
+      <div class="card border-danger mb-3" style="max-width: 18rem;">
+        <div class="card-header">1.Summarize the problem</div>
+        <div class="card-body text-danger">
+          <p class="card-text">Include details about your goal
+              Describe expected and actual results
+                  Include any error messages</p>
+        </div>
+      </div>
+
+      <div class="card border-danger mb-3" style="max-width: 18rem;">
+        <div class="card-header">2.Describe what you’ve tried</div>
+        <div class="card-body text-danger">
+          <p class="card-text"> Show what you’ve tried and tell us what you found
+            (on this site or elsewhere) and why it didn’t meet
+            your needs. You can get better answers when you provide research.</p>
+        </div>
+      </div>
+
+      <div class="card border-danger mb-3" style="max-width: 18rem;">
+        <div class="card-header">3.Show some code</div>
+        <div class="card-body text-danger">
+          <p class="card-text">When appropriate, share the minimum amount of
+            code others need to reproduce your problem
+            (also called a minimum, reproducible example)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
